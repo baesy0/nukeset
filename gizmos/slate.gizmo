@@ -6,9 +6,9 @@ Gizmo {
  vendor vendor
  addUserKnob {1 shot t "Shot info" -STARTLINE}
  shot FOO_0010
- addUserKnob {1 username t "User info" -STARTLINE}
+ addUserKnob {1 username t "User info"}
  username bae
- addUserKnob {4 task M {comp light rnd ""}}
+ addUserKnob {4 task -STARTLINE M {comp light rnd "" ""}}
  addUserKnob {3 version t "Version info" -STARTLINE}
  version 1
  addUserKnob {3 offset t "set offset value"}
@@ -86,7 +86,7 @@ Gizmo {
   font_width_toolbar 100
   font_height_toolbar 100
   message "\[date %y]-\[date %m]-\[date %d] \[date %T]"
-  old_message {{49 57 45 48 50 45 49 56 32 49 52 58 48 55 58 53 51}
+  old_message {{49 57 45 48 50 45 49 56 32 49 52 58 49 51 58 53 49}
     }
   old_expression_markers {{0 1 3 4 6 7 9 16}
     }
