@@ -1,0 +1,205 @@
+#! /home/bae/NUKE/libnuke-11.3.1.so -nx
+version 11.3 v1
+Gizmo {
+ addUserKnob {20 User}
+ addUserKnob {1 vendor t "print vendor info on left top"}
+ vendor vendor
+ addUserKnob {1 shot t "Shot info" -STARTLINE}
+ shot FOO_0010
+ addUserKnob {1 username t "User info" -STARTLINE}
+ username bae
+ addUserKnob {4 task M {comp light rnd ""}}
+ addUserKnob {3 version t "Version info" -STARTLINE}
+ version 1
+ addUserKnob {3 offset t "set offset value"}
+ offset 15
+ addUserKnob {7 fontsize t "set ratio of fontsize" R 0 2}
+ fontsize 0.8
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -135
+  ypos -52
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.shot]"
+  old_message {{70 79 79 95 48 48 49 48}
+    }
+  old_expression_markers {{0 7}
+    }
+  box {0 {"height - (font_size*global_font_scale)-parent.offset"} {width} {height-parent.offset}}
+  xjustify center
+  transforms {{0 2}
+    }
+  cursor_position 19
+  font {{ Liberation Mono : Regular : liberation/LiberationMono-Regular.ttf : 0 }}
+  global_font_scale {{width*0.0003*parent.fontsize}}
+  center {1024 484}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 968}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 484 0 0 1 1 0 0 0 0}
+    }
+  enable_background true
+  background_opacity 0.5
+  background_border_x {{width}}
+  background_border_y {{(parent.offset*2)*global_font_scale}}
+  name topCenter
+  xpos -135
+  ypos 45
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.vendor]"
+  old_message {{118 101 110 100 111 114}
+    }
+  old_expression_markers {{0 5}
+    }
+  box {{parent.offset} {"height - (font_size*global_font_scale)-parent.offset"} {width} {height-parent.offset}}
+  transforms {{0 2}
+    }
+  cursor_position 21
+  font {{ Liberation Mono : Regular : liberation/LiberationMono-Regular.ttf : 0 }}
+  global_font_scale {{width*0.0003*parent.fontsize}}
+  center {1024 484}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 968}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 484 0 0 1 1 0 0 0 0}
+    }
+  name topLeft
+  xpos -135
+  ypos 69
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[date %y]-\[date %m]-\[date %d] \[date %T]"
+  old_message {{49 57 45 48 50 45 49 56 32 49 52 58 48 55 58 53 51}
+    }
+  old_expression_markers {{0 1 3 4 6 7 9 16}
+    }
+  box {0 {"height - (font_size*global_font_scale)-parent.offset"} {width-parent.offset} {height-parent.offset}}
+  xjustify right
+  transforms {{0 2}
+    }
+  cursor_position 39
+  font {{ Liberation Mono : Regular : liberation/LiberationMono-Regular.ttf : 0 }}
+  global_font_scale {{width*0.0003*parent.fontsize}}
+  center {1024 484}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 968}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 484 0 0 1 1 0 0 0 0}
+    }
+  name topRight
+  xpos -135
+  ypos 93
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message memo
+  old_message {{109 101 109 111}
+    }
+  box {0 {parent.offset} {width} {font_size*global_font_scale+parent.offset}}
+  xjustify center
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 4
+  font {{ Liberation Mono : Regular : liberation/LiberationMono-Regular.ttf : 0 }}
+  global_font_scale {{width*0.0003*parent.fontsize}}
+  center {1024 484}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 968}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 484 0 0 1 1 0 0 0 0}
+    }
+  enable_background true
+  background_opacity 0.5
+  background_border_x {{width}}
+  background_border_y {{(parent.offset*2)*global_font_scale}}
+  name buttomCenter
+  xpos -135
+  ypos 117
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.username] \[value parent.task] v\[format %03d \[value parent.version]]"
+  old_message {{98 97 101 32 99 111 109 112 32 118 48 48 49}
+    }
+  old_expression_markers {{0 2 4 7 10 12}
+    }
+  box {{offset} {offset} {width} {font_size*global_font_scale+offset}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 81
+  font {{ Liberation Mono : Regular : liberation/LiberationMono-Regular.ttf : 0 }}
+  global_font_scale {{width*0.0003*parent.fontsize}}
+  center {1024 484}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 968}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 484 0 0 1 1 0 0 0 0}
+    }
+  name buttomLeft
+  xpos -135
+  ypos 141
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[metadata input/timecode] \[format %06d \[frame]]"
+  old_message {{48 48 58 51 49 58 49 50 58 48 57 32 49 53 54 52 48 53}
+    }
+  old_expression_markers {{0 10 12 17}
+    }
+  box {0 {parent.offset} {width-parent.offset} {font_size*global_font_scale+parent.offset}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 47
+  font {{ Liberation Mono : Regular : liberation/LiberationMono-Regular.ttf : 0 }}
+  global_font_scale {{width*0.0003*parent.fontsize}}
+  center {1024 484}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 968}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 484 0 0 1 1 0 0 0 0}
+    }
+  name buttomRight
+  xpos -135
+  ypos 165
+ }
+ Output {
+  name Output1
+  xpos -135
+  ypos 275
+ }
+end_group
