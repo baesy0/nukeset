@@ -1,5 +1,6 @@
 import nuke
 import nukescripts
+import checkenv
 
 tb = nuke.toolbar("Nodes")
 m = tb.addMenu("bae", icon="icon.png")
@@ -14,6 +15,5 @@ mb.addCommand("Issue_and_Bugs", "nukescripts.start('https://github.com/lazypic/n
 mb.addCommand("-","","")
 mb.addCommand("StartPerformanceTimers", "nuke.startPerformanceTimers()")
 mb.addCommand("StopPerformanceTimers", "nuke.stopPerformanceTimers()")
-mb.addCommand("-","","")
-# mb.addCommand("", "")
+mb.addCommand("CheckENV", "checkenv.main()")
 
