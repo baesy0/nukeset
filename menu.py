@@ -1,6 +1,7 @@
 import nuke
 import nukescripts
 import checkenv
+import openFolder
 
 tb = nuke.toolbar("Nodes")
 m = tb.addMenu("bae", icon="icon.png")
@@ -15,5 +16,8 @@ mb.addCommand("Issue_and_Bugs", "nukescripts.start('https://github.com/lazypic/n
 mb.addCommand("-","","")
 mb.addCommand("StartPerformanceTimers", "nuke.startPerformanceTimers()")
 mb.addCommand("StopPerformanceTimers", "nuke.stopPerformanceTimers()")
+mb.addCommand("-","","")
 mb.addCommand("CheckENV", "checkenv.main()")
+mb.addCommand("-","","")
+mb.addCommand("OpenFolder", "reload(openFolder);openFolder.main()", "F8", shortcutContext=2)
 
