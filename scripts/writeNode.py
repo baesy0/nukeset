@@ -18,6 +18,7 @@ class MakeWrite(QWidget):
 		self.reformat.setChecked(True)
 		self.slate = QCheckBox("&slate", self)
 		self.slate.setChecked(True)
+		self.tail = nuke.selectedNode()
 
 		# event
 		self.ok.clicked.connect(self.bt_ok)
@@ -39,12 +40,46 @@ class MakeWrite(QWidget):
 		self.reformatSize = self.fm.currentText()
 
 	def bt_ok(self):
-		print self.fm.currentText()
-		print self.ext.currentText()
-		print self.reformat.isChecked()
-		print self.slate.isChecked()
+		if self.reformat.isChecked():
+			reformat = nuke.nodes.Reformat()
+			reformat["box_fixed"].setValue(True)
+			reformat["type"].setValue("to box")
+			width, height = self.fm.currentText().split("x")
+			reformat["box_width"].setValue(int(width))
+			reformat["box_height"].setValue(int(height))
+#			reformat.setInput(0,self.tail)
+#			self.tail = reformat
+		if self.slate.isChecked():
+			slate = nuke.nodes.slate()
+#			slate.setInput(0, self.tail)
+#			self.tail = slate
+
+# write노드에 옵션 안들어가는 거 해결하기!
+		write = nuke.nodes.Write()
+		write["file_type"].setValue(self.ext.currentText[1:])
+		write["file"].setValue("/test/test/####"+self.ext.currentText())
+		write["create_directories"].setValue(True)
+#		write.setInput(0, self.tail)
+
+
 		self.close()
 
+"""
+	timecode = nuke.nodes.AddTimeCode()
+	timecode["startcode"].setValue("01:00:00:00")
+	timecode["useFrame"].setValue(True)
+	timecode["frame"].setValue(1001)
+	timecode.setInput(0, reformat)
+
+	slate = nuke.nodes.slate()
+	slate.setInput(0, timecode)
+
+	w = nuke.nodes.Write()
+	w["file_type"].setValue("exr")
+	w["file"].setValue("/test/test.####.exr")
+	w["create_directories"].setValue(True)
+	w.setInput(0, slate)
+"""
 def main():
 	nodes = nuke.selectedNodes()
 	if len(nodes) != 1:
@@ -61,27 +96,5 @@ def main():
 		customApp.show()
 	except:
 		pass
-	
-	tail = nuke.selectedNode()
 
-	reformat = nuke.nodes.Reformat()
-	reformat["type"].setValue("to box")
-	reformat["box_width"].setValue(2048)
-	reformat["box_height"].setValue(968)
-	reformat["box_fixed"].setValue(True)
-	reformat.setInput(0,tail)
 
-	timecode = nuke.nodes.AddTimeCode()
-	timecode["startcode"].setValue("01:00:00:00")
-	timecode["useFrame"].setValue(True)
-	timecode["frame"].setValue(1001)
-	timecode.setInput(0, reformat)
-
-	slate = nuke.nodes.slate()
-	slate.setInput(0, timecode)
-
-	w = nuke.nodes.Write()
-	w["file_type"].setValue("exr")
-	w["file"].setValue("/test/test.####.exr")
-	w["create_directories"].setValue(True)
-	w.setInput(0, slate)
