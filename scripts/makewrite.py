@@ -12,7 +12,7 @@ class MakeWrite(QWidget):
 		self.exts = [".exr", ".dpx", ".tga", ".mov"]
 		self.ext.addItems(self.exts)
 		self.fm = QComboBox()
-		self.formats = ["2048x1152", "1920x1080", "2048x872"]
+		self.formats = ["2048x1152", "1920x1080", "2048x872", "2048x968"]
 		self.fm.addItems(self.formats)
 		self.reformat = QCheckBox("&reformat", self)
 		self.reformat.setChecked(True)
@@ -35,7 +35,7 @@ class MakeWrite(QWidget):
 		layout.addWidget(self.startframe, 1, 1)
 		layout.addWidget(self.starttimecode, 1, 2)
 		layout.addWidget(self.slate, 2, 0)
-		layout.addWidget(QLable("Ext"), 3, 0)
+		layout.addWidget(QLabel("Ext"), 3, 0)
 		layout.addWidget(self.ext, 3, 1)
 		layout.addWidget(self.cancel, 4, 0)
 		layout.addWidget(self.ok, 4,1)
@@ -56,7 +56,7 @@ class MakeWrite(QWidget):
 
 	def genAddTimecode(self):
 		timecode = nuke.nodes.AddTimeCode()
-		timecode["startcode"].setValue(srt(self.starttimecode.text())
+		timecode["startcode"].setValue(str(self.starttimecode.text()))
 		timecode["useFrame"].setValue(True)
 		timecode["frame"].setValue(int(self.startframe.text()))
 		self.linkOrder.append(timecode)
@@ -91,7 +91,7 @@ class MakeWrite(QWidget):
 		"""
 		if self.reformat.isChecked():
 			self.genReformat()
-		if self.addtimecode.isCheck():
+		if self.addtimecode.isChecked():
 			self.genAddTimecode()
 		if self.slate.isChecked():
 			self.genSlate()
@@ -104,6 +104,7 @@ def checkCondition():
 	if nuke.root().name() == "Root":
 		nuke.message("파일을 저장해주세요.")
 		return
+
 	if len(nuke.selectedNodes()) != 1:
 		nuke.message("노드를 하나만 선택하세요")
 		return
