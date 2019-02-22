@@ -4,6 +4,7 @@ import checkenv
 import openFolder
 import hello
 import makewrite
+import test01
 
 tb = nuke.toolbar("Nodes")
 m = tb.addMenu("bae", icon="icon.png")
@@ -24,4 +25,4 @@ mb.addCommand("-","","")
 mb.addCommand("OpenFolder", "reload(openFolder);openFolder.main()", "F8", shortcutContext=2)
 mb.addCommand("Hello", "hello.main()")
 mb.addCommand("writeNode", "reload(makewrite);makewrite.main()", "F10", shortcutContext=2)
-
+mb.addCommand("test", "reload(test01);test01.main()", "F11", shortcutContext=2)

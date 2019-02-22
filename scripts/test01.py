@@ -27,36 +27,16 @@ class WriteFormat(QWidget):
 		reformat = nuke.nodes.Reformat()
 		reformat["box_fixed"].setValue(True)
 		reformat["type"].setValue("to box")
-		reformat["box_width"].setValue(int(nuke.selectedNode()["formate"].value().width()))
-		reformat["box_height"].setValue(int(nuke.selectedNode()["formate"].value().height()))
+		reformat["box_width"].setValue(int(nuke.selectedNode()["format"].value().width()))
+		reformat["box_height"].setValue(int(nuke.selectedNode()["format"].value().height()))
 		self.linkOrder.append(reformat)
 
-
-	def genWrite(self):
-		write = nuke.nodes.Write()
-		dirname, basename = os.path.split(nuke.root().name())
-		filename, notuse = os.path.splitext(basename)
-		ext = str(self.ext.currentText())
-		write["file_type"].setValue(ext[1:])
-		write["file"].setValue("%s/out/%s/%s.####%s" % (dirname, filename, filename, ext))
-		write["create_directories"].setValue(True)
-		self.linkOrder.append(write)
-
-	def linkNodes(self):
-		"""
-		linkOrder 노드 순서대로 노드를 연결, 생성한다.
-		"""
-		tail = nuke.selectedNode()
-		for n in self.linkOrder:
-			n.setInput(0, tail)
-			tail = n
 		
 	def pushOK(self):
 		"""
 		OK버튼을 누르면 노드를 생성한다.
 		"""
-		self.genWrite()
-		self.linkNodes()
+		self.genReformat()
 		self.close()
 			
 
@@ -76,7 +56,7 @@ def main():
 		customApp.close()
 	except:
 		pass
-	customApp = MakeWrite()
+	customApp = WriteFormat()
 	try:
 		customApp.show()
 	except:
