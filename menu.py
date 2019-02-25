@@ -5,6 +5,7 @@ import openFolder
 import hello
 import makewrite
 import test01
+import nklibrary
 
 tb = nuke.toolbar("Nodes")
 m = tb.addMenu("bae", icon="icon.png")
@@ -26,3 +27,4 @@ mb.addCommand("OpenFolder", "reload(openFolder);openFolder.main()", "F8", shortc
 mb.addCommand("Hello", "hello.main()")
 mb.addCommand("writeNode", "reload(makewrite);makewrite.main()", "F10", shortcutContext=2)
 mb.addCommand("test", "reload(test01);test01.main()", "F11", shortcutContext=2)
+mb.addCommand("NKLibrary", "reload(nklibrary);nklibrary.main()")
